@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const wordleReverser = require('./');
 const helps = new Set(['help', '--help', '-h'])
 if (helps.has(process.argv[2])) {
