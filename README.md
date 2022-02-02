@@ -3,7 +3,9 @@ REVERDLE
 
 command line tool to find possible guesses based on a wordle pattern.
 
-Usage is `reverdle word pattern` with pattern being the emojis you get
+Usage is `reverdle word pattern` with pattern being the emojis you get.
+
+Words that are possible answers are printed in yellow.
 
 so if somebody posted the following pattern for the word "those":
 

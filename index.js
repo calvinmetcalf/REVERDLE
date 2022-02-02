@@ -144,13 +144,22 @@ const makeTests = (_word, _pattern) => {
   }
   return [prefixTest, suffixTest];
 }
-function * makeGuesser (word, pattern) {
+function * makeGuesser (word, pattern, dict) {
   if (pattern.toLowerCase() === 'ggggg') {
     yield word;
     return;
   }
   const [ptest, stest] = makeTests(word, pattern);
-  yield* dictIter(short, ptest, stest);
-  yield* dictIter(long, ptest, stest);
+  if (dict) {
+    if (dict === 'short') {
+      yield* dictIter(short, ptest, stest);
+    } else if (dict === 'long') {
+      yield* dictIter(long, ptest, stest);
+    }
+  } else {
+    yield* dictIter(long, ptest, stest);
+    yield* dictIter(short, ptest, stest);
+  }
+
 }
 module.exports = makeGuesser;
