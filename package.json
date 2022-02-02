@@ -1,6 +1,6 @@
 {
   "name": "reverdle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "bin": "./bin.js",
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "repository": {
-   "type": "git",
-   "url": "git+https://github.com/calvinmetcalf/REVERDLE.git"
- }
+    "type": "git",
+    "url": "git+https://github.com/calvinmetcalf/REVERDLE.git"
+  }
 }
