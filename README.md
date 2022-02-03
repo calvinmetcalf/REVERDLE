@@ -23,7 +23,7 @@ and you wanted to know the second to last guess you could run
 
 and it would print out `these`
 
-Note you can also use letters instead of the emojis, you can use b or w for the black (or white) squares then y for yellow and g for green.  
+Note you can also use letters instead of the emojis, you can use b or k (or w or even x) for the black (or white, i.e. not-in-the-word) squares then y for yellow and g for green.
 
 So if the word was "deton" and this was the pattern
 
