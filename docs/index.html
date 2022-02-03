@@ -30,10 +30,16 @@ button.onclick = () => {
   }
   const newUl = document.createElement('ul');
   const results = reverdle(wordValue, patternValue);
+  let any = false;
   for (const result of results) {
-    console.log(result);
+    any = true;
     const li =  document.createElement('li');
     li.appendChild(document.createTextNode(result));
+    newUl.appendChild(li);
+  }
+  if (!any) {
+    const li =  document.createElement('li');
+    li.appendChild(document.createTextNode('no results'));
     newUl.appendChild(li);
   }
   output.appendChild(newUl)
