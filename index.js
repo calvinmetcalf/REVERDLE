@@ -1,5 +1,6 @@
 const {short, long} = require('./words');
-function * dictIter(dict, ptest =()=>true, stest=()=>true){
+const makePatern = require('./make-patern');
+function * dictIter(dict, ptest =()=>true, stest=()=>true, word, pattern){
   for (const [prefix, value] of Object.entries(dict)) {
     if (!ptest(prefix)) {
       continue;
@@ -9,7 +10,10 @@ function * dictIter(dict, ptest =()=>true, stest=()=>true){
     while (++i < len) {
       const sufix = value.slice(i*3, (i+1)*3);
       if (stest(sufix, prefix)) {
-        yield prefix+sufix;
+        const guess = prefix+sufix
+        if (makePatern(word, guess) === pattern) {
+          yield guess;
+        }
       }
     }
   }
@@ -126,15 +130,8 @@ const makeYtest = (template, pattern, isPrefix) => {
     return full !== template;
   }
 }
-const makeTests = (_word, _pattern) => {
+const makeTests = (word, pattern) => {
   let suffixTest, prefixTest;
-  const word = _word.toUpperCase();
-  const pattern = _pattern.toLowerCase().replace(/[w\u{2B1B}\u{2B1C}]/gu, 'b')
-    .replace(/\u{1F7E9}/ug, 'g')
-    .replace(/\u{1F7E8}/ug, 'y')
-  if (!reg.exec(pattern)) {
-    throw new Error('pattern should be of form GGYBB')
-  }
   if (!pattern.includes('y')) {
     prefixTest = makeGtest(word.slice(0, 2), pattern.slice(0, 2), word);
     suffixTest = makeGtest(word.slice(2), pattern.slice(2), word, true);
@@ -144,7 +141,14 @@ const makeTests = (_word, _pattern) => {
   }
   return [prefixTest, suffixTest];
 }
-function * makeGuesser (word, pattern, dict) {
+function * makeGuesser (_word, _pattern, dict) {
+  const word = _word.toUpperCase();
+  const pattern = _pattern.toLowerCase().replace(/[w\u{2B1B}\u{2B1C}]/gu, 'b')
+    .replace(/\u{1F7E9}/ug, 'g')
+    .replace(/\u{1F7E8}/ug, 'y')
+    if (!reg.exec(pattern)) {
+      throw new Error('pattern should be of form GGYBB')
+    }
   if (pattern.toLowerCase() === 'ggggg') {
     yield word;
     return;
@@ -152,13 +156,13 @@ function * makeGuesser (word, pattern, dict) {
   const [ptest, stest] = makeTests(word, pattern);
   if (dict) {
     if (dict === 'short') {
-      yield* dictIter(short, ptest, stest);
+      yield* dictIter(short, ptest, stest, word, pattern);
     } else if (dict === 'long') {
-      yield* dictIter(long, ptest, stest);
+      yield* dictIter(long, ptest, stest, word, pattern);
     }
   } else {
-    yield* dictIter(long, ptest, stest);
-    yield* dictIter(short, ptest, stest);
+    yield* dictIter(long, ptest, stest, word, pattern);
+    yield* dictIter(short, ptest, stest, word, pattern);
   }
 
 }
