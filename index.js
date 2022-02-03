@@ -143,7 +143,7 @@ const makeTests = (word, pattern) => {
 }
 function * makeGuesser (_word, _pattern, dict) {
   const word = _word.toUpperCase();
-  const pattern = _pattern.toLowerCase().replace(/[w\u{2B1B}\u{2B1C}]/gu, 'b')
+  const pattern = _pattern.toLowerCase().replace(/[kwx\u{2B1B}\u{2B1C}]/gu, 'b')
     .replace(/\u{1F7E9}/ug, 'g')
     .replace(/\u{1F7E8}/ug, 'y')
     if (!reg.exec(pattern)) {
