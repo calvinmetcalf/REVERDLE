@@ -1,6 +1,6 @@
 {
   "name": "reverdle",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "main": "index.js",
   "bin": "./bin.js",
@@ -13,5 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/calvinmetcalf/REVERDLE.git"
   },
-  "files":["bin.js", "index.js", "make-patern.js", "words.js"]
+  "files": [
+    "bin.js",
+    "index.js",
+    "make-patern.js",
+    "words.js"
+  ]
 }
