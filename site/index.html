@@ -1,0 +1,35 @@
+<label for="word">Word</label>
+
+<input type="text" id="word" name="word" required
+       minlength="5" maxlength="5" size="10">
+<br>
+<label for="pattern">Pattern</label>
+<input type="text" id="pattern" pattern="word" required
+      minlength="10" maxlength="10" size="10"><br>
+<input type='button' id='btn' value="generate possible guesses">
+<div id="output"/>
+<script src="bundle.js"></script>
+<script>
+const word = document.getElementById('word');
+const pattern = document.getElementById('pattern');
+const button = document.getElementById('btn');
+const output = document.getElementById('output');
+
+button.onclick = () => {
+  const wordValue = word.value;
+  const patternValue = pattern.value;
+  const oldUl = document.querySelector('ul');
+  if (oldUl) {
+    oldUl.remove();
+  }
+  const newUl = document.createElement('ul');
+  const results = reverdle(wordValue, patternValue);
+  for (const result of results) {
+    console.log(result);
+    const li =  document.createElement('li');
+    li.appendChild(document.createTextNode(result));
+    newUl.appendChild(li);
+  }
+  output.appendChild(newUl)
+}
+</script>

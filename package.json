@@ -12,5 +12,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/calvinmetcalf/REVERDLE.git"
-  }
+  },
+  "files":["bin.js", "index.js", "make-patern.js", "words.js"]
 }
