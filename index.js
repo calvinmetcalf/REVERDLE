@@ -17,11 +17,11 @@ function * dictIter(dict, ptest =()=>true, stest=()=>true, word, pattern){
 }
 const reg = /^[bgy]{5}$/;
 const alwaysTrue = ()=>true;
-const makeGtest = (template, pattern, fullWord) => {
+const makeGtest = (template, pattern) => {
   if (!pattern.includes('g')) {
     return alwaysTrue;
   }
-  if (!pattern.includes('b')) {
+  if (pattern === 'gg') {
     return word => word === template;
   }
   return word => {
