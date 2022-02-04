@@ -29,7 +29,7 @@ button.onclick = () => {
     oldUl.remove();
   }
   const newUl = document.createElement('ul');
-  const results = reverdle(wordValue, patternValue);
+  const results = reverdle(wordValue.trim(), patternValue.trim());
   let any = false;
   for (const result of results) {
     any = true;
